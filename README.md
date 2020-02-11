@@ -1,2 +1,3 @@
-# lecture15
-Code shown in the 15th lecture
+# Lecture: Applicative functors
+
+Code shown in the lecture on applicative functors.
