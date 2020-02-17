@@ -5,10 +5,10 @@
 
 module Lecture where
 
-import Prelude hiding (Applicative(..), lookup)
+import Prelude hiding (Applicative(..), Either(..), lookup)
 
 --------------------------------------------------------------------------------
--- Example
+-- Example (Maybe)
 
 lookup :: Eq k => k -> [(k,a)] -> Maybe a
 lookup _ [] = Nothing
@@ -29,6 +29,15 @@ fromDictionary dict =
     Academic <$> lookup "name" dict
            `app` lookup "room" dict
            `app` lookup "title" dict
+
+--------------------------------------------------------------------------------
+-- Example (Either)
+
+data Either e a = Left e | Right a
+
+instance Functor (Either e) where
+    fmap _ (Left x)  = Left x
+    fmap f (Right y) = Right (f y)
 
 elookup :: (Show k, Eq k) => k -> [(k,a)] -> Either String a
 elookup x [] = Left $ "Key " ++ show x ++ " not found!"
