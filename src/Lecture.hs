@@ -48,28 +48,3 @@ fromDictionaryE dict =
           `eapp` elookup "title" dict
 
 --------------------------------------------------------------------------------
--- Applicatives
-
-infixl 4 <*>
-class Functor f => Applicative f where
-    pure :: a -> f a
-    (<*>) :: f (a -> b) -> f a -> f b
-
-instance Applicative Maybe where
-    pure = Just
-
-    (Just f) <*> (Just x) = Just (f x)
-    _        <*> _        = Nothing
-
-instance Applicative [] where
-    pure x = [x]
-
-    fs <*> xs = [f x | f <- fs, x <- xs]
-
-instance Applicative (Either e) where 
-    pure = Right 
-
-    Left err <*> _ = Left err 
-    Right f  <*> x = f <$> x
-
---------------------------------------------------------------------------------
