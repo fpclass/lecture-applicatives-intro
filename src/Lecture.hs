@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 -- Functional Programming (CS141)                                             --
--- Lecture: Applicative functors                                              --
+-- Lecture: Introduction to Applicative functors                              --
 --------------------------------------------------------------------------------
 
 module Lecture where
@@ -74,14 +74,5 @@ fromDictionaryE dict =
 
 ex5 :: Either String Academic 
 ex5 = fromDictionaryE [("name", "Leeky boi"), ("office", "MB2.31")]
-
---------------------------------------------------------------------------------
--- Example (Lists)
-
-appl :: [a -> b] -> [a] -> [b]
-appl fs xs = [f x | f <- fs, x <- xs]
-
-ex6 :: [Bool]
-ex6 = appl [even, odd] [1,2,3]
 
 --------------------------------------------------------------------------------
